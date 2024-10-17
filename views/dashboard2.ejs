@@ -435,20 +435,37 @@
       .hide[data-v-5f0b9ba1] {
         display: none;
       }
-      .trans select {
-        background-color: #fff !important;
-      }
     </style>
     <style>
-      @media screen and (max-width: 768px) {
-        body {
-          font-size: 30px;
+      .mail-container {
+        position: absolute;
+        bottom: 40px;
+        left: 40px;
+      }
+
+      .mail-container a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        padding: 0.5em;
+        background-color: #000;
+        border-radius: 50%;
+      }
+
+      .mail-container img {
+        width: 4em;
+        height: 4em;
+        border-radius: 50%;
+      }
+
+      @media (max-width: 840px) {
+        .mail-container {
+          left: 20px;
         }
-        .ctn-invesment-part {
-          width: 48% !important;
-        }
-        .ref-link {
-          font-size: 20px;
+        .mail-container img {
+          width: 3em;
+          height: 3em;
         }
       }
     </style>
@@ -459,12 +476,6 @@
     class="loginarea"
     cz-shortcut-listen="true"
   >
-    <div
-      style="z-index: 1000; position: relative"
-      class="trans"
-      id="google_translate_element"
-    ></div>
-
     <div class="wrapper-account">
       <div class="headerContainer">
         <div class="headerInner">
@@ -477,6 +488,12 @@
           </div>
         </div>
       </div>
+    </div>
+
+    <div id="mailContainer" class="mail-container">
+      <a href="mailto:support@kapitronix.co">
+        <img src="/mail.png" alt="" />
+      </a>
     </div>
 
     <div class="inside_inner_account">
@@ -502,11 +519,10 @@
             </div>
             <div class="affiliate_top" style="font-size: 0.8em">
               Affiliate Link:<a
-                href="http://<%= res.locals.sitename %>.com?ref=<%= req.user.email%>"
+                href="http://BillionsXchangetrading.us?ref=<%= req.user.email%>"
                 class="ref-link"
               >
-                http://<%= res.locals.sitename %>.com?ref=<%=
-                req.user.email%></a
+                http://BillionsXchangetrading.us?ref=<%= req.user.email%></a
               >
             </div>
           </div>
@@ -821,21 +837,6 @@
         $(this).toggleClass("rotate");
       });
     </script>
-
-    <script type="text/javascript">
-      function googleTranslateElementInit() {
-        new google.translate.TranslateElement(
-          { pageLanguage: "en" },
-          "google_translate_element"
-        );
-      }
-    </script>
-
-    <script
-      type="text/javascript"
-      src="https://translate.google.com/translate_a/element.js?
-cb=googleTranslateElementInit"
-    ></script>
 
     <script src="//code.jivosite.com/widget/NjpH4cO7ts" async></script>
   </body>

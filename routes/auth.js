@@ -7,7 +7,7 @@ const path = require("path");
 
 router.get("/signin", (req, res) => {
     try {
-        return res.render("signin", { pageTitle: "Login", res });
+        return res.render("signin", { pageTitle: "Login" });
     } catch (err) {
         return res.redirect("/");
     }
@@ -30,7 +30,7 @@ router.get('/logout', (req, res) => {
 
 router.get("/signup", (req, res) => {
     try {
-        return res.render("signup", { pageTitle: "Signup", res });
+        return res.render("signup", { pageTitle: "Signup" });
     } catch (err) {
         return res.redirect("/");
     }
@@ -51,6 +51,7 @@ router.post('/signup', async (req, res) => {
             password,
             password2
         } = req.body;
+        console.log(req.body)
         const userIP = req.ip;
         const user = await User.findOne({ email, username });
         const user1 = await User.findOne({ username });
@@ -58,16 +59,16 @@ router.post('/signup', async (req, res) => {
             return res.render("signup", { ...req.body, error_msg: "A User with that email or username already exists", pageTitle: "Signup" });
         } else {
             if (!username || !fullname || !gender || !country || !currency || !security_question || !security_answer || !email || !phone || !password || !password2) {
-                return res.render("signup", { ...req.body, res, error_msg: "Please fill all fields", pageTitle: "Signup" });
+                return res.render("signup", { ...req.body, error_msg: "Please fill all fields", pageTitle: "Signup" });
             } else {
                 if (password !== password2) {
-                    return res.render("signup", { ...req.body, res, error_msg: "Both passwords are not thesame", pageTitle: "Signup" });
+                    return res.render("signup", { ...req.body, error_msg: "Both passwords are not thesame", pageTitle: "Signup" });
                 }
                 if (password2.length < 6) {
-                    return res.render("signup", { ...req.body, res, error_msg: "Password length should be min of 6 chars", pageTitle: "Signup" });
+                    return res.render("signup", { ...req.body, error_msg: "Password length should be min of 6 chars", pageTitle: "Signup" });
                 }
                 const newUser = {
-                    username: username.toLowerCase(),
+                    username,
                     fullname,
                     email,
                     phone,

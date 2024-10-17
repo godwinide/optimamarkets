@@ -9,7 +9,7 @@ router.get("/", ensureAdmin, async (req, res) => {
         const customers = await User.find({ isAdmin: false });
         const history = await History.find({});
         const total_bal = customers.reduce((prev, cur) => prev + Number(cur.balance), 0);
-        return res.render("admin/index", { layout: "admin/layout", res, pageTitle: "Welcome", customers, history, total_bal, req });
+        return res.render("admin/index", { layout: "admin/layout", pageTitle: "Welcome", customers, history, total_bal, req });
     }
     catch (err) {
         return res.redirect("/admin");
@@ -20,7 +20,7 @@ router.get("/edit-user/:id", ensureAdmin, async (req, res) => {
     try {
         const { id } = req.params;
         const customer = await User.findOne({ _id: id });
-        return res.render("admin/editUser", { layout: "admin/layout", res, pageTitle: "Welcome", customer, req });
+        return res.render("admin/editUser", { layout: "admin/layout", pageTitle: "Welcome", customer, req });
     }
     catch (err) {
         return res.redirect("/admin");
@@ -97,7 +97,7 @@ router.get("/delete-account/:id", ensureAdmin, async (req, res) => {
 router.get("/deposit", ensureAdmin, async (req, res) => {
     try {
         const customers = await User.find({});
-        return res.render("admin/deposit", { res, layout: "admin/layout", pageTitle: "Deposit", customers, req });
+        return res.render("admin/deposit", { layout: "admin/layout", pageTitle: "Deposit", customers, req });
     } catch (err) {
         return res.redirect("/admin")
     }
@@ -139,7 +139,7 @@ router.post("/deposit", ensureAdmin, async (req, res) => {
 
 router.get("/change-password", ensureAdmin, async (req, res) => {
     try {
-        return res.render("admin/changePassword", { res, layout: "admin/layout", pageTitle: "Change Password", req });
+        return res.render("admin/changePassword", { layout: "admin/layout", pageTitle: "Change Password", req });
     } catch (err) {
         console.log(err);
         return res.redirect("/admin");
