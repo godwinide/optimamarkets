@@ -67,7 +67,7 @@ router.post('/signup', async (req, res) => {
                     return res.render("signup", { ...req.body, res, error_msg: "Password length should be min of 6 chars", pageTitle: "Signup" });
                 }
                 const newUser = {
-                    username,
+                    username: username.toLowerCase(),
                     fullname,
                     email,
                     phone,
